@@ -40,15 +40,9 @@ void put_char_args(char *arg1, ...) large
 {
 	va_list ap;
 	char *str, rent='\n';
-	// char temp[3]=0;
 
 	va_start(ap, arg1);
 	str = arg1;
-
-	// sprintf(temp, "%s", sizeof(arg1));
-	// put_char(temp), put_char(&rent);
-
-	// printf("%s\n", arg1);
 
 	do{
 		put_char(str), put_char(&rent);
