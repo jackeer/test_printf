@@ -1,0 +1,3 @@
+".\out\main.obj" 
+TO ".\out\test_printf" 
+PRINT(".\list\test_printf.m51")

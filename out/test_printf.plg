@@ -1,0 +1,14 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\Jackeer\test_printf\test_printf.uvproj
+Project File Date:  10/08/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=9.0 xdata=53 code=821
+".\out\test_printf" - 0 Error(s), 0 Warning(s).
