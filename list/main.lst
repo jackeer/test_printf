@@ -1,4 +1,4 @@
-C51 COMPILER V9.02   MAIN                                                                  10/08/2014 18:09:19 PAGE 1   
+C51 COMPILER V9.02   MAIN                                                                  04/12/2015 01:32:40 PAGE 1   
 
 
 C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
@@ -35,7 +35,7 @@ line level    source
   24   1      
   25   1              int i = 0;
   26   1      
-  27   1              while((tmp[i] != NULL) && (tmp[i] != EOF))
+  27   1              while((tmp[i] != NULL) && (tmp[i] != EOF)&& (tmp[i] != '\n'))
   28   1                      {
   29   2                      SBUF = tmp[i];
   30   2      
@@ -51,8 +51,8 @@ line level    source
   40          {
   41   1              va_list ap;
   42   1              char *str, rent='\n';
-  43   1              char temp[3]=0;
-  44   1              
+  43   1              // char temp[3]=0;
+  44   1      
   45   1              va_start(ap, arg1);
   46   1              str = arg1;
   47   1      
@@ -62,15 +62,15 @@ line level    source
   51   1              // printf("%s\n", arg1);
   52   1      
   53   1              do{
-C51 COMPILER V9.02   MAIN                                                                  10/08/2014 18:09:19 PAGE 2   
+C51 COMPILER V9.02   MAIN                                                                  04/12/2015 01:32:40 PAGE 2   
 
   54   2                      put_char(str), put_char(&rent);
   55   2                      // printf("%s\n", str);
-  56   2                      
+  56   2      
   57   2                      str = va_arg(ap, char *);
   58   2                      // str=str-1;
   59   2      
-  60   2              } while((*str != NULL) && (*str != EOF))
+  60   2              } while((*str != NULL) && (*str != EOF));
   61   1              
   62   1              va_end(ap);
   63   1      
@@ -92,7 +92,7 @@ line level    source
   79          
   80          
   81          
-C51 COMPILER V9.02   MAIN                                                                  10/08/2014 18:09:19 PAGE 3   
+C51 COMPILER V9.02   MAIN                                                                  04/12/2015 01:32:40 PAGE 3   
 
 ASSEMBLY LISTING OF GENERATED OBJECT CODE
 
@@ -153,37 +153,40 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0022 33                RLC     A
 0023 95E0              SUBB    A,ACC
 0025 4B                ORL     A,R3
-0026 601E              JZ      ?C0006
+0026 6023              JZ      ?C0006
 0028 ED                MOV     A,R5
 0029 F4                CPL     A
-C51 COMPILER V9.02   MAIN                                                                  10/08/2014 18:09:19 PAGE 4   
+C51 COMPILER V9.02   MAIN                                                                  04/12/2015 01:32:40 PAGE 4   
 
-002A 601A              JZ      ?C0006
-                                           ; SOURCE LINE # 28
-                                           ; SOURCE LINE # 29
+002A 601F              JZ      ?C0006
 002C 900000      R     MOV     DPTR,#tmp
 002F E0                MOVX    A,@DPTR
 0030 FB                MOV     R3,A
 0031 8F82              MOV     DPL,R7
 0033 8E83              MOV     DPH,R6
 0035 120000      E     LCALL   ?C?CLDOPTR
-0038 F599              MOV     SBUF,A
+0038 FD                MOV     R5,A
+0039 640A              XRL     A,#0AH
+003B 600E              JZ      ?C0006
+                                           ; SOURCE LINE # 28
+                                           ; SOURCE LINE # 29
+003D 8D99              MOV     SBUF,R5
                                            ; SOURCE LINE # 31
-003A C299              CLR     TI
-003C         ?C0004:
+003F C299              CLR     TI
+0041         ?C0004:
                                            ; SOURCE LINE # 33
-003C 3099FD            JNB     TI,?C0004
-003F         ?C0005:
+0041 3099FD            JNB     TI,?C0004
+0044         ?C0005:
                                            ; SOURCE LINE # 35
-003F 0F                INC     R7
-0040 BF0001            CJNE    R7,#00H,?C0015
-0043 0E                INC     R6
-0044         ?C0015:
+0044 0F                INC     R7
+0045 BF0001            CJNE    R7,#00H,?C0015
+0048 0E                INC     R6
+0049         ?C0015:
                                            ; SOURCE LINE # 36
-0044 80C8              SJMP    ?C0002
+0049 80C3              SJMP    ?C0002
                                            ; SOURCE LINE # 37
-0046         ?C0006:
-0046 22                RET     
+004B         ?C0006:
+004B 22                RET     
              ; FUNCTION _put_char (END)
 
              ; FUNCTION _put_char_args (BEGIN)
@@ -201,74 +204,64 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 000B 900000      R     MOV     DPTR,#rent
 000E 740A              MOV     A,#0AH
 0010 F0                MOVX    @DPTR,A
-                                           ; SOURCE LINE # 43
-0011 7800        R     MOV     R0,#LOW temp
-0013 7C00        R     MOV     R4,#HIGH temp
-0015 7D01              MOV     R5,#01H
-0017 7BFF              MOV     R3,#0FFH
-0019 7A00        R     MOV     R2,#HIGH _?ix1000
-001B 7900        R     MOV     R1,#LOW _?ix1000
-001D 7E00              MOV     R6,#00H
-001F 7F03              MOV     R7,#03H
-0021 120000      E     LCALL   ?C?COPY
                                            ; SOURCE LINE # 45
-0024 900000      R     MOV     DPTR,#ap
-0027 7401              MOV     A,#01H
-0029 F0                MOVX    @DPTR,A
-002A A3                INC     DPTR
-002B 7400        R     MOV     A,#HIGH arg1+03H
-002D F0                MOVX    @DPTR,A
-002E A3                INC     DPTR
-002F 7400        R     MOV     A,#LOW arg1+03H
-C51 COMPILER V9.02   MAIN                                                                  10/08/2014 18:09:19 PAGE 5   
-
-0031 F0                MOVX    @DPTR,A
+0011 900000      R     MOV     DPTR,#ap
+0014 7401              MOV     A,#01H
+0016 F0                MOVX    @DPTR,A
+0017 A3                INC     DPTR
+0018 7400        R     MOV     A,#HIGH arg1+03H
+001A F0                MOVX    @DPTR,A
+001B A3                INC     DPTR
+001C 7400        R     MOV     A,#LOW arg1+03H
+001E F0                MOVX    @DPTR,A
                                            ; SOURCE LINE # 46
-0032 900000      R     MOV     DPTR,#arg1
-0035 E0                MOVX    A,@DPTR
-0036 FB                MOV     R3,A
-0037 A3                INC     DPTR
-0038 E0                MOVX    A,@DPTR
-0039 FA                MOV     R2,A
-003A A3                INC     DPTR
-003B E0                MOVX    A,@DPTR
-003C F9                MOV     R1,A
+001F 900000      R     MOV     DPTR,#arg1
+0022 E0                MOVX    A,@DPTR
+0023 FB                MOV     R3,A
+0024 A3                INC     DPTR
+0025 E0                MOVX    A,@DPTR
+C51 COMPILER V9.02   MAIN                                                                  04/12/2015 01:32:40 PAGE 5   
+
+0026 FA                MOV     R2,A
+0027 A3                INC     DPTR
+0028 E0                MOVX    A,@DPTR
+0029 F9                MOV     R1,A
 ;---- Variable 'str' assigned to Register 'R1/R2/R3' ----
-003D         ?C0009:
+002A         ?C0009:
                                            ; SOURCE LINE # 53
                                            ; SOURCE LINE # 54
-003D 120000      R     LCALL   _put_char
-0040 7B01              MOV     R3,#01H
-0042 7A00        R     MOV     R2,#HIGH rent
-0044 7900        R     MOV     R1,#LOW rent
-0046 120000      R     LCALL   _put_char
+002A 120000      R     LCALL   _put_char
+002D 7B01              MOV     R3,#01H
+002F 7A00        R     MOV     R2,#HIGH rent
+0031 7900        R     MOV     R1,#LOW rent
+0033 120000      R     LCALL   _put_char
                                            ; SOURCE LINE # 57
-0049 900000      R     MOV     DPTR,#ap
-004C E0                MOVX    A,@DPTR
-004D FB                MOV     R3,A
-004E A3                INC     DPTR
-004F E4                CLR     A
-0050 75F003            MOV     B,#03H
-0053 120000      E     LCALL   ?C?ILDIX
-0056 A9F0              MOV     R1,B
-0058 FA                MOV     R2,A
-0059 120000      E     LCALL   ?C?PLDPTR
+0036 900000      R     MOV     DPTR,#ap
+0039 E0                MOVX    A,@DPTR
+003A FB                MOV     R3,A
+003B A3                INC     DPTR
+003C E4                CLR     A
+003D 75F003            MOV     B,#03H
+0040 120000      E     LCALL   ?C?ILDIX
+0043 A9F0              MOV     R1,B
+0045 FA                MOV     R2,A
+0046 120000      E     LCALL   ?C?PLDPTR
                                            ; SOURCE LINE # 60
-005C 120000      E     LCALL   ?C?CLDPTR
-005F FF                MOV     R7,A
-0060 FD                MOV     R5,A
-0061 33                RLC     A
-0062 95E0              SUBB    A,ACC
-0064 4D                ORL     A,R5
-0065 6004              JZ      ?C0008
-0067 EF                MOV     A,R7
-0068 B4FFD2            CJNE    A,#0FFH,?C0009
-006B         ?C0008:
+0049 120000      E     LCALL   ?C?CLDPTR
+004C FF                MOV     R7,A
+004D FD                MOV     R5,A
+004E 33                RLC     A
+004F 95E0              SUBB    A,ACC
+0051 4D                ORL     A,R5
+0052 6004              JZ      ?C0008
+0054 EF                MOV     A,R7
+0055 B4FFD2            CJNE    A,#0FFH,?C0009
+0058         ?C0008:
                                            ; SOURCE LINE # 64
-006B 7B01              MOV     R3,#01H
-006D 7A00        R     MOV     R2,#HIGH rent
-006F 7900        R     MOV     R1,#LOW rent
-0071 020000      R     LJMP    _put_char
+0058 7B01              MOV     R3,#01H
+005A 7A00        R     MOV     R2,#HIGH rent
+005C 7900        R     MOV     R1,#LOW rent
+005E 020000      R     LJMP    _put_char
              ; FUNCTION _put_char_args (END)
 
              ; FUNCTION main (BEGIN)
@@ -284,8 +277,6 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 000A F9                MOV     R1,A
 000B 7401              MOV     A,#01H
 000D 93                MOVC    A,@A+DPTR
-C51 COMPILER V9.02   MAIN                                                                  10/08/2014 18:09:19 PAGE 6   
-
 000E FA                MOV     R2,A
 000F 7402              MOV     A,#02H
 0011 93                MOVC    A,@A+DPTR
@@ -293,6 +284,8 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0015 C9                XCH     A,R1
 0016 F0                MOVX    @DPTR,A
 0017 A3                INC     DPTR
+C51 COMPILER V9.02   MAIN                                                                  04/12/2015 01:32:40 PAGE 6   
+
 0018 EA                MOV     A,R2
 0019 F0                MOVX    @DPTR,A
 001A A3                INC     DPTR
@@ -348,8 +341,6 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 005C F0                MOVX    @DPTR,A
 005D A3                INC     DPTR
 005E 7400        R     MOV     A,#HIGH ?SC_55
-C51 COMPILER V9.02   MAIN                                                                  10/08/2014 18:09:19 PAGE 7   
-
 0060 F0                MOVX    @DPTR,A
 0061 A3                INC     DPTR
 0062 7400        R     MOV     A,#LOW ?SC_55
@@ -357,6 +348,8 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0065 A3                INC     DPTR
 0066 74FF              MOV     A,#0FFH
 0068 F0                MOVX    @DPTR,A
+C51 COMPILER V9.02   MAIN                                                                  04/12/2015 01:32:40 PAGE 7   
+
 0069 A3                INC     DPTR
 006A 7400        R     MOV     A,#HIGH ?SC_57
 006C F0                MOVX    @DPTR,A
@@ -372,7 +365,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 007A 80FE              SJMP    ?C0012
              ; FUNCTION main (END)
 
-C51 COMPILER V9.02   MAIN                                                                  10/08/2014 18:09:19 PAGE 8   
+C51 COMPILER V9.02   MAIN                                                                  04/12/2015 01:32:40 PAGE 8   
 
 NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
 ====                                    =====   ======  ====    ======  ====
@@ -382,14 +375,13 @@ size_t . . . . . . . . . . . . . . . .  TYPEDEF  -----  U_INT    -----  2
 ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
 TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
 main . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
-  tmp_str. . . . . . . . . . . . . . .  STATIC   CODE   PTR      003EH  3
+  tmp_str. . . . . . . . . . . . . . .  STATIC   CODE   PTR      003BH  3
 SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
 PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
 SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
 Uart_init. . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
 TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
 TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
-_?ix1000 . . . . . . . . . . . . . . .  STATIC   CODE   ARRAY    003BH  3
 TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
 TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
 _put_char. . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
@@ -401,14 +393,13 @@ _put_char_args . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
   ap . . . . . . . . . . . . . . . . .  AUTO     XDATA  PTR      002BH  3
   str. . . . . . . . . . . . . . . . .  * REG *  DATA   PTR      0001H  3
   rent . . . . . . . . . . . . . . . .  AUTO     XDATA  CHAR     002EH  1
-  temp . . . . . . . . . . . . . . . .  AUTO     XDATA  ARRAY    002FH  3
 va_list. . . . . . . . . . . . . . . .  TYPEDEF  -----  PTR      -----  3
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    332    ----
-   CONSTANT SIZE    =     65    ----
-   XDATA SIZE       =   ----      53
+   CODE SIZE        =    318    ----
+   CONSTANT SIZE    =     62    ----
+   XDATA SIZE       =   ----      50
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----

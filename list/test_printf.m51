@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        10/08/2014  18:09:20  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/12/2015  01:32:40  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -11,7 +11,6 @@ MEMORY MODEL: SMALL
 INPUT MODULES INCLUDED:
   .\out\main.obj (MAIN)
   C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
-  C:\KEIL\C51\LIB\C51S.LIB (?C?COPY)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?ILDIX)
@@ -33,17 +32,17 @@ LINK MAP OF MODULE:  .\out\test_printf (MAIN)
             IDATA   0008H     0001H     UNIT         ?STACK
 
             * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
-            XDATA   0000H     0035H     UNIT         _XDATA_GROUP_
+            XDATA   0000H     0032H     UNIT         _XDATA_GROUP_
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0199H     UNIT         ?C?LIB_CODE
-            CODE    019CH     007CH     UNIT         ?PR?MAIN?MAIN
-            CODE    0218H     0074H     UNIT         ?PR?_PUT_CHAR_ARGS?MAIN
-            CODE    028CH     0047H     UNIT         ?PR?_PUT_CHAR?MAIN
-            CODE    02D3H     0041H     UNIT         ?CO?MAIN
-            CODE    0314H     0015H     UNIT         ?PR?UART_INIT?MAIN
-            CODE    0329H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0003H     00A3H     UNIT         ?C?LIB_CODE
+            CODE    00A6H     007CH     UNIT         ?PR?MAIN?MAIN
+            CODE    0122H     0061H     UNIT         ?PR?_PUT_CHAR_ARGS?MAIN
+            CODE    0183H     004CH     UNIT         ?PR?_PUT_CHAR?MAIN
+            CODE    01CFH     003EH     UNIT         ?CO?MAIN
+            CODE    020DH     0015H     UNIT         ?PR?UART_INIT?MAIN
+            CODE    0222H     000CH     UNIT         ?C_C51STARTUP
 
 
 
@@ -59,16 +58,15 @@ SEGMENT                           XDATA_GROUP
 ?PR?MAIN?MAIN                   -----    -----
   +--> ?PR?UART_INIT?MAIN
   +--> ?CO?MAIN
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/08/2014  18:09:20  PAGE 2
-
-
   +--> ?PR?_PUT_CHAR_ARGS?MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/12/2015  01:32:40  PAGE 2
 
-?PR?_PUT_CHAR_ARGS?MAIN         0000H    0032H
-  +--> ?CO?MAIN
+
+
+?PR?_PUT_CHAR_ARGS?MAIN         0000H    002FH
   +--> ?PR?_PUT_CHAR?MAIN
 
-?PR?_PUT_CHAR?MAIN              0032H    0003H
+?PR?_PUT_CHAR?MAIN              002FH    0003H
 
 
 
@@ -81,119 +79,112 @@ SYMBOL TABLE OF MODULE:  .\out\test_printf (MAIN)
   C:0000H         SYMBOL        _ICE_DUMMY_
   B:00A8H.4       PUBLIC        ES
   B:0098H.1       PUBLIC        TI
-  C:019CH         PUBLIC        main
+  C:00A6H         PUBLIC        main
   D:0099H         PUBLIC        SBUF
   D:0087H         PUBLIC        PCON
   D:0098H         PUBLIC        SCON
-  C:0314H         PUBLIC        Uart_init
+  C:020DH         PUBLIC        Uart_init
   D:0089H         PUBLIC        TMOD
   D:0088H         PUBLIC        TCON
-  C:030EH         SYMBOL        _?ix1000
   D:008DH         PUBLIC        TH1
   D:008BH         PUBLIC        TL1
-  C:028CH         PUBLIC        _put_char
-  C:0218H         PUBLIC        _put_char_args
+  C:0183H         PUBLIC        _put_char
+  C:0122H         PUBLIC        _put_char_args
   -------         PROC          UART_INIT
-  C:0314H         LINE#         10
-  C:0314H         LINE#         11
-  C:0314H         LINE#         12
-  C:0317H         LINE#         13
-  C:031AH         LINE#         14
-  C:031DH         LINE#         15
-  C:0320H         LINE#         16
-  C:0323H         LINE#         17
-  C:0326H         LINE#         18
-  C:0328H         LINE#         20
+  C:020DH         LINE#         10
+  C:020DH         LINE#         11
+  C:020DH         LINE#         12
+  C:0210H         LINE#         13
+  C:0213H         LINE#         14
+  C:0216H         LINE#         15
+  C:0219H         LINE#         16
+  C:021CH         LINE#         17
+  C:021FH         LINE#         18
+  C:0221H         LINE#         20
   -------         ENDPROC       UART_INIT
   -------         PROC          _PUT_CHAR
-  X:0032H         SYMBOL        tmp
+  X:002FH         SYMBOL        tmp
   -------         DO            
   D:0006H         SYMBOL        i
   -------         ENDDO         
-  C:028CH         LINE#         22
-  C:0297H         LINE#         25
-  C:029AH         LINE#         27
-  C:02B8H         LINE#         28
-  C:02B8H         LINE#         29
-  C:02C6H         LINE#         31
-  C:02C8H         LINE#         33
-  C:02CBH         LINE#         35
-  C:02D0H         LINE#         36
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/08/2014  18:09:20  PAGE 3
-
-
-  C:02D2H         LINE#         37
+  C:0183H         LINE#         22
+  C:018EH         LINE#         25
+  C:0191H         LINE#         27
+  C:01C0H         LINE#         28
+  C:01C0H         LINE#         29
+  C:01C2H         LINE#         31
+  C:01C4H         LINE#         33
+  C:01C7H         LINE#         35
+  C:01CCH         LINE#         36
+  C:01CEH         LINE#         37
   -------         ENDPROC       _PUT_CHAR
   -------         PROC          _PUT_CHAR_ARGS
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/12/2015  01:32:40  PAGE 3
+
+
   X:0000H         SYMBOL        arg1
   -------         DO            
   X:0003H         SYMBOL        ellipsis_40
   X:002BH         SYMBOL        ap
   D:0001H         SYMBOL        str
   X:002EH         SYMBOL        rent
-  X:002FH         SYMBOL        temp
   -------         ENDDO         
-  C:0218H         LINE#         39
-  C:0223H         LINE#         42
-  C:0229H         LINE#         43
-  C:023CH         LINE#         45
-  C:024AH         LINE#         46
-  C:0255H         LINE#         53
-  C:0255H         LINE#         54
-  C:0261H         LINE#         57
-  C:0274H         LINE#         60
-  C:0283H         LINE#         64
+  C:0122H         LINE#         39
+  C:012DH         LINE#         42
+  C:0133H         LINE#         45
+  C:0141H         LINE#         46
+  C:014CH         LINE#         53
+  C:014CH         LINE#         54
+  C:0158H         LINE#         57
+  C:016BH         LINE#         60
+  C:017AH         LINE#         64
   -------         ENDPROC       _PUT_CHAR_ARGS
   -------         PROC          MAIN
   -------         DO            
-  C:0311H         SYMBOL        tmp_str
+  C:020AH         SYMBOL        tmp_str
   -------         ENDDO         
-  C:019CH         LINE#         67
-  C:019CH         LINE#         71
-  C:019FH         LINE#         72
-  C:01A1H         LINE#         75
-  C:0216H         LINE#         77
+  C:00A6H         LINE#         67
+  C:00A6H         LINE#         71
+  C:00A9H         LINE#         72
+  C:00ABH         LINE#         75
+  C:0120H         LINE#         77
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
-  -------         MODULE        ?C?COPY
-  C:00D3H         PUBLIC        ?C?COPY
-  -------         ENDMOD        ?C?COPY
-
   -------         MODULE        ?C?CLDPTR
-  C:00F9H         PUBLIC        ?C?CLDPTR
+  C:0003H         PUBLIC        ?C?CLDPTR
   -------         ENDMOD        ?C?CLDPTR
 
   -------         MODULE        ?C?CLDOPTR
-  C:0112H         PUBLIC        ?C?CLDOPTR
+  C:001CH         PUBLIC        ?C?CLDOPTR
   -------         ENDMOD        ?C?CLDOPTR
 
   -------         MODULE        ?C?ILDIX
-  C:013FH         PUBLIC        ?C?ILDIX
+  C:0049H         PUBLIC        ?C?ILDIX
   -------         ENDMOD        ?C?ILDIX
 
   -------         MODULE        ?C?PLDPTR
-  C:0155H         PUBLIC        ?C?PLDPTR
+  C:005FH         PUBLIC        ?C?PLDPTR
   -------         ENDMOD        ?C?PLDPTR
 
   -------         MODULE        ?C?PLDIDATA
-  C:0175H         PUBLIC        ?C?PLDIDATA
+  C:007FH         PUBLIC        ?C?PLDIDATA
   -------         ENDMOD        ?C?PLDIDATA
-BL51 BANKED LINKER/LOCATER V6.22                                                      10/08/2014  18:09:20  PAGE 4
-
-
 
   -------         MODULE        ?C?PLDXDATA
-  C:017EH         PUBLIC        ?C?PLDXDATA
+  C:0088H         PUBLIC        ?C?PLDXDATA
   -------         ENDMOD        ?C?PLDXDATA
 
   -------         MODULE        ?C?PLDPDATA
-  C:0187H         PUBLIC        ?C?PLDPDATA
+  C:0091H         PUBLIC        ?C?PLDPDATA
   -------         ENDMOD        ?C?PLDPDATA
 
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/12/2015  01:32:40  PAGE 4
+
+
   -------         MODULE        ?C?PLDCODE
-  C:0190H         PUBLIC        ?C?PLDCODE
+  C:009AH         PUBLIC        ?C?PLDCODE
   -------         ENDMOD        ?C?PLDCODE
 
-Program Size: data=9.0 xdata=53 code=821
+Program Size: data=9.0 xdata=50 code=558
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
